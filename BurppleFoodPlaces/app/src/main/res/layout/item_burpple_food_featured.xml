@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="300dp"
+    android:layout_marginLeft="16dp"
+    >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_featured_image"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:src="@drawable/img_burpple_food_featured"
+        android:scaleType="centerCrop"
+        />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BURPPLE EXCLUSIVE"
+            android:background="@color/color_yellow"
+            android:textColor="@color/color_white"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="28dp"
+            android:textSize="12sp"
+            android:padding="4dp"
+            />
+        
+        <TextView
+            android:id="@+id/tv_promotion_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="24dp"
+            android:layout_below="@id/tv_title"
+            android:textColor="@color/color_white"
+            android:layout_marginTop="10dp"
+            android:text="1-for-1 Chilli Pomelo Crab Xiao Long Bao"
+            />
+        <View
+            android:id="@+id/view_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_white"
+            android:layout_below="@id/tv_promotion_title"
+            />
+
+        <TextView
+            android:id="@+id/tv_promotion_last_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="till 31st jan'18"
+            android:layout_below="@id/view_separator"
+            android:textColor="@color/color_white"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="24dp"
+            android:textSize="16dp"
+            />
+
+        </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/color_yellow"
+    android:layout_gravity="bottom"
+    >
+
+    <TextView
+        android:id="@+id/tv_shop_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blue Lotus - Chinese"
+        android:textColor="@color/color_white"
+        android:textSize="16dp"
+        />
+    <TextView
+        android:id="@+id/tv_shop_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_shop_name"
+        android:text="Kent Ridge"
+        android:textColor="@color/color_white"
+        android:textSize="12sp"/>
+</RelativeLayout>
+
+
+
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>
