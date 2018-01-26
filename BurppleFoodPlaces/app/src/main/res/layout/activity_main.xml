@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+<android.support.design.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -26,7 +33,7 @@
 
 
                 <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_highlight_img"
+                    android:id="@+id/vp_highlight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true" />
@@ -35,7 +42,7 @@
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="26dp"
                     android:gravity="center"
                     android:text="burpple"
                     android:textColor="@color/color_white"
@@ -88,7 +95,7 @@
                 android:layout_marginLeft="16dp"
                 android:text="Promotions"
                 android:textColor="@color/color_black"
-                android:textSize="27sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/btn_see_more"
@@ -99,7 +106,7 @@
                 android:layout_marginRight="16dp"
                 android:text="See More"
                 android:textColor="@color/color_pink"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_burpple_food_featured"
@@ -126,7 +133,7 @@
                 android:layout_marginLeft="16dp"
                 android:text="Burpple Guides"
                 android:textColor="@color/color_black"
-                android:textSize="27sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/btn_latest_see_more"
@@ -137,7 +144,7 @@
                 android:layout_marginRight="16dp"
                 android:text="See More"
                 android:textColor="@color/color_pink"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
 
             <android.support.v7.widget.RecyclerView
@@ -165,7 +172,7 @@
                 android:layout_marginLeft="16dp"
                 android:text="New and Trending"
                 android:textColor="@color/color_black"
-                android:textSize="27sp" />
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:id="@+id/ll_news_trending"
@@ -205,7 +212,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignLeft="@id/tv_newly_opened"
                             android:layout_below="@id/tv_newly_opened"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             />
 
                         <View
@@ -258,7 +265,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignLeft="@id/tv_trending_venues"
                             android:layout_below="@id/tv_trending_venues"
-                            android:layout_marginTop="16dp" />
+                            android:layout_marginTop="8dp" />
 
                         <View
                             android:id="@+id/view_separator_trending"
@@ -302,7 +309,7 @@
                 android:drawablePadding="28dp"
                 android:padding="8dp"
                 android:text="Explore Neighbourhoods"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <View
                 android:id="@+id/view_separator_explore_category"
@@ -322,7 +329,7 @@
                 android:drawablePadding="28dp"
                 android:padding="8dp"
                 android:text="Explore Categories"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <View
                 android:id="@+id/view_separator_end"
@@ -339,3 +346,13 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+    
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="@dimen/navigation_width"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/view_pod_before_login"
+        android:layout_gravity="start"/>
+
+
+</android.support.v4.widget.DrawerLayout>

@@ -16,44 +16,33 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import xyz.einandartun.burpplefoodplaces.BurppleFoodApp;
-import xyz.einandartun.burpplefoodplaces.events.LoadedFeaturedItemsEvent;
-import xyz.einandartun.burpplefoodplaces.network.responses.GetPromotionResponse;
+import xyz.einandartun.burpplefoodplaces.events.LoadedHighlightItemEvent;
+import xyz.einandartun.burpplefoodplaces.network.responses.GetHighlightResponse;
 
 /**
- * Created by einandartun on 1/12/18.
+ * Created by einandartun on 1/14/18.
  */
 
-public class OkHttpDataAgent implements BurppleFoodDataAgent {
+public class OkHttpHighlightDataAgent implements FoodHighlightDataAgent {
 
-    public static OkHttpDataAgent objInstance;
+    public static OkHttpHighlightDataAgent objInstance;
 
-    private OkHttpDataAgent(){
-
+    public OkHttpHighlightDataAgent() {
     }
 
-    public static OkHttpDataAgent getObjInstance(){
+    public static OkHttpHighlightDataAgent getObjInstance(){
         if (objInstance == null){
-            objInstance = new OkHttpDataAgent();
+            objInstance = new OkHttpHighlightDataAgent();
         }
         return objInstance;
     }
-    @Override
-    public void LoadFoodItems() {
-        new LoadFoodTask().execute("http://padcmyanmar.com/padc-3/burpple-food-places/apis/v1/getPromotions.php");
-    }
 
     @Override
-    public void loginUser(String phoneNo, String password) {
-
+    public void LoadHighlightFoodItems() {
+        new LoadFoodHighlightTask().execute("http://padcmyanmar.com/padc-3/burpple-food-places/apis/v1/getFeatured.php");
     }
 
-    @Override
-    public void registerUser(String phoneNo, String password, String name) {
-
-    }
-
-    private static class LoadFoodTask extends AsyncTask<String, Void, String>{
-
+    private static class LoadFoodHighlightTask extends AsyncTask<String, Void,String>{
         @Override
         protected String doInBackground(String... urls) {
             String url = urls[0];
@@ -94,8 +83,9 @@ public class OkHttpDataAgent implements BurppleFoodDataAgent {
             super.onPostExecute(response);
 
             Gson gson = new Gson();
-            GetPromotionResponse getPromotionResponse = gson.fromJson(response, GetPromotionResponse.class);
-            LoadedFeaturedItemsEvent event = new LoadedFeaturedItemsEvent(getPromotionResponse.getFoodPromotion());
+            GetHighlightResponse getHighlightResponse = gson.fromJson(response, GetHighlightResponse.class);
+
+            LoadedHighlightItemEvent event = new LoadedHighlightItemEvent(getHighlightResponse.getFoodHighlight());
             EventBus eventBus = EventBus.getDefault();
             eventBus.post(event);
         }

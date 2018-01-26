@@ -6,4 +6,5 @@ package xyz.einandartun.burpplefoodplaces.network;
 
 public interface FoodGuideDataAgent {
     void loadGuide();
+
 }

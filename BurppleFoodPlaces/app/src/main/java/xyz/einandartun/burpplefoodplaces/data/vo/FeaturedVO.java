@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class FeaturedVO {
 
+    @SerializedName("burpple-featured-id")
     private String burppleFeaturedId;
 
     @SerializedName("burpple-featured-image")
@@ -15,8 +16,15 @@ public class FeaturedVO {
 
     @SerializedName("burpple-featured-title")
     private String burppleFeaturedtittle;
+
+    @SerializedName("burpple-featured-desc")
     private String burppleFeaturedDesc;
+
+    @SerializedName("burpple-featured-tag")
     private String burppleFeaturedTag;
+
+    @SerializedName("burpple-promotion-shop")
+    private BurpplePromotionShopVO burpplePromotionShop;
 
     public String getBurppleFeaturedId() {
         return burppleFeaturedId;
@@ -36,5 +44,9 @@ public class FeaturedVO {
 
     public String getBurppleFeaturedTag() {
         return burppleFeaturedTag;
+    }
+
+    public BurpplePromotionShopVO getBurpplePromotionShop() {
+        return burpplePromotionShop;
     }
 }

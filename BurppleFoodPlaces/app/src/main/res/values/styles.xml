@@ -13,6 +13,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="accent_button">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:paddingLeft">@dimen/margin_medium_2</item>
+        <item name="android:paddingRight">@dimen/margin_medium_2</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

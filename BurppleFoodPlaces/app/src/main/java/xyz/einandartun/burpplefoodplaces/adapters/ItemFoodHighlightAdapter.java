@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import xyz.einandartun.burpplefoodplaces.R;
+import xyz.einandartun.burpplefoodplaces.data.vo.FeaturedVO;
 import xyz.einandartun.burpplefoodplaces.viewitems.FoodHighlightViewItem;
 
 /**
@@ -14,9 +18,15 @@ import xyz.einandartun.burpplefoodplaces.viewitems.FoodHighlightViewItem;
  */
 
 public class ItemFoodHighlightAdapter extends PagerAdapter {
+
+    private List<FeaturedVO> mFeaturedList;
+
+    public ItemFoodHighlightAdapter(){
+        mFeaturedList = new ArrayList<>();
+    }
     @Override
     public int getCount() {
-        return 5;
+        return mFeaturedList.size();
     }
 
     @Override
@@ -31,11 +41,18 @@ public class ItemFoodHighlightAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         FoodHighlightViewItem viewItem = (FoodHighlightViewItem)layoutInflater.inflate(R.layout.item_burpple_food_highlight, container, false);
         container.addView(viewItem);
+
+        viewItem.setData(mFeaturedList.get(position));
         return viewItem;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View)object);
+    }
+
+    public void setFeaturedItems(List<FeaturedVO> featuredImageList){
+        mFeaturedList = featuredImageList;
+        notifyDataSetChanged();
     }
 }

@@ -14,14 +14,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import xyz.einandartun.burpplefoodplaces.events.LoadedFeaturedItemsEvent;
 import xyz.einandartun.burpplefoodplaces.events.LoadedFoodGuideItemsEvent;
+import xyz.einandartun.burpplefoodplaces.events.LoadedHighlightItemEvent;
+import xyz.einandartun.burpplefoodplaces.events.SuccessLoginEvent;
+import xyz.einandartun.burpplefoodplaces.events.SuccessRegisterEvent;
 import xyz.einandartun.burpplefoodplaces.network.responses.GetGuideResponse;
+import xyz.einandartun.burpplefoodplaces.network.responses.GetHighlightResponse;
 import xyz.einandartun.burpplefoodplaces.network.responses.GetPromotionResponse;
+import xyz.einandartun.burpplefoodplaces.network.responses.LoginResponse;
+import xyz.einandartun.burpplefoodplaces.network.responses.RegisterResponse;
 
 /**
  * Created by einandartun on 1/14/18.
  */
 
-public class RetrofitDataAgent implements BurppleFoodDataAgent,FoodGuideDataAgent {
+public class RetrofitDataAgent implements BurppleFoodDataAgent,FoodGuideDataAgent,FoodHighlightDataAgent {
 
     private static RetrofitDataAgent sObjInstance;
 
@@ -74,6 +80,7 @@ public class RetrofitDataAgent implements BurppleFoodDataAgent,FoodGuideDataAgen
 
     }
 
+
     @Override
     public void loadGuide() {
         Call<GetGuideResponse> getGuideResponseCall = mFoodApi.getFoodtems(1,"b002c7e1a528b7cb460933fc2875e916");
@@ -94,5 +101,68 @@ public class RetrofitDataAgent implements BurppleFoodDataAgent,FoodGuideDataAgen
 
             }
         });
+    }
+
+    @Override
+    public void LoadHighlightFoodItems() {
+        Call<GetHighlightResponse> getHighlightResponseCall = mFoodApi.getFoodHighlightItems(1,"b002c7e1a528b7cb460933fc2875e916");
+        getHighlightResponseCall.enqueue(new Callback<GetHighlightResponse>() {
+            @Override
+            public void onResponse(Call<GetHighlightResponse> call, Response<GetHighlightResponse> response) {
+                GetHighlightResponse getHighlightResponse = response.body();
+
+                if (getHighlightResponse != null){
+                    LoadedHighlightItemEvent event = new LoadedHighlightItemEvent(getHighlightResponse.getFoodHighlight());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetHighlightResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void loginUser(String phoneNo, String password) {
+        Call<LoginResponse>loginResponseCall = mFoodApi.loginUser(phoneNo,password);
+        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                if (loginResponse != null){
+                    SuccessLoginEvent event = new SuccessLoginEvent(loginResponse.getLoginUserVO(),loginResponse.getFavFoodList(),loginResponse.getFavFoodPlacesList());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void registerUser(String phoneNo, String password, String name) {
+        Call<RegisterResponse>registerResponseCall = mFoodApi.registerUser(phoneNo,password,name);
+        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                RegisterResponse registerResponse = response.body();
+                if (registerResponse != null){
+                    SuccessRegisterEvent event = new SuccessRegisterEvent(registerResponse.getRegisterUserVO());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+
+            }
+        });{
+
+        }
     }
 }
